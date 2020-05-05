@@ -10,4 +10,6 @@ RUN apk add --update --no-cache --virtual .build-deps git perl-dev \
     && apk del .build-deps \
     && rm -rf /var/cache/apk/* /root/.cpan*
 
+EXPOSE 8080
 
+RUN cp /quote-api/startup.sh /usr/local/bin/startup
