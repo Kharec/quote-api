@@ -1,0 +1,23 @@
+#!perl -w
+use strict;
+
+use Fortune;
+use Mojolicious::Lite -signatures;
+use Mojo::Server::Daemon;
+
+my $fortune = Fortune->new("fortunes.txt");
+$fortune->read_header();
+
+get '/' => sub($q) {
+	my ($data, $quote);
+	$data = $fortune->get_random_fortune();
+	($quote) = $data =~ /(.*)\n.*/;
+	$q->render(json => $quote);
+};
+
+Mojo::Server::Daemon->new(
+	app => app,
+	listen => ["http://127.0.0.1:8080"]
+)->run();
+
+exit(0);
