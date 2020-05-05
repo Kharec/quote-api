@@ -13,3 +13,5 @@ RUN apk add --update --no-cache --virtual .build-deps git perl-dev \
 EXPOSE 8080
 
 RUN cp /quote-api/startup.sh /usr/local/bin/startup
+
+CMD ["/usr/local/bin/startup"]
