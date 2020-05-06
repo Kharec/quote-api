@@ -1,2 +1,2 @@
 #!/bin/sh
-perl /quote-api/quote-api
+cd /quote-api && perl quote-api
